@@ -1,5 +1,11 @@
-<% include ../partials/header %>
+<% include ./partials/header %>
 
-    <h1>Suh.</h1>
+<main ng-controller="IndexController as index" class="container">
+  <section class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>{{ index.greeting }}</h1>
+    </div>
+  </section>
+</main>
 
-<% include ../partials/footer %>
+<% include ./partials/footer %>

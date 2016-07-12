@@ -8,10 +8,10 @@ var express = require('express'),
 app.use(bodyParser.json())
   .use(bodyParser.urlencoded({extended:false}))
   .use(methodOverride('_method'))
-  .use(express.static(__dirname + '/public'));
+  .use(express.static('public'));
 
 app.set('view engine', 'ejs')
-  .set('views', __dirname + '/views');
+  .set('views', 'views');
 
 
 // === Routes === //
