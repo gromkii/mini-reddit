@@ -2,7 +2,8 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
-    index = require('./routes/index');
+    index = require('./routes/index'),
+    api   = require('./routes/api');
 
 // === Middleware === //
 app.use(bodyParser.json())
@@ -16,6 +17,7 @@ app.set('view engine', 'ejs')
 
 // === Routes === //
 app.use('/', index);
+app.use('/api', api);
 
 
 // === Listen === //

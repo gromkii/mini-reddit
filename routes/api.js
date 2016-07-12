@@ -13,5 +13,15 @@ router.route('/users')
     })
   })
 
+router.route('/users/:id')
+  .get((req, res) => {
+    User.where('id', req.params.id)
+      .fetch()
+      .then( results => {
+        var user = results.toJSON();
+        res.json(user);
+      })
+  })
+
 
 module.exports = router;
