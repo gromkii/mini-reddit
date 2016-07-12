@@ -1,0 +1,16 @@
+<table class="table table-striped">
+  <thead>
+    <th></th>
+    <th></th>
+    <th></th>
+  </thead>
+
+  <tbody ng-repeat="user in users.usersList">
+    <tr>
+      <td>{{ user.id }}</td>
+      <td>{{ user.full_name}}</td>
+      <td>{{ user.username}}</td>
+      <td><img ng-src="{{user.img_url}}"</td>
+    </tr>
+  </tbody>
+</table>

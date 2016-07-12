@@ -1,11 +1,35 @@
 <% include ./partials/header %>
 
-<main ng-controller="IndexController as index" class="container">
+<main class="container" ng-controller="IndexController as index">
+  <section class="row">
+    <div class="col-md-4 col-md-offset-2">
+      <h1>What up, this is a Mini Forum</h1>
+      <p>Cool, let's see what we can do.</p>
+    </div>
+    <div class="col-md-4 pull-right">
+      <h3>Activities</h3>
+        <ul>
+          <li>
+            <a href="/users">View Users</a>
+          </li>
+          <li>
+            <a href="/users/new">Register New User</a>
+          </li>
+          <li>
+            <a href="/posts/new">New Post</a>
+          </li>
+        </ul>
+    </div>
+  </section>
+
   <section class="row">
     <div class="col-md-8 col-md-offset-2">
-      <h1>{{ index.greeting }}</h1>
+      <ng-view>
+
+      </ng-view>
     </div>
   </section>
 </main>
+
 
 <% include ./partials/footer %>
