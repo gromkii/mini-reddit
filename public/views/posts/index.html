@@ -1,3 +1,7 @@
+<fieldset>
+  <label>Search<input type="text" ng-model="search" class="form-control"></label>
+</fieldset>
+
 <table class="table" ng-show="posts.postsList.length">
   <thead>
     <th>Post ID</th>
@@ -6,7 +10,7 @@
     <th>Post</th>
   </thead>
 
-  <tbody ng-repeat="post in posts.postsList">
+  <tbody ng-repeat="post in posts.postsList | filter:search">
     <tr>
       <td>{{ post.id }}</td>
       <td><a ng-href="/users/{{ post.user.id }}">{{ post.user.username }}</a></td>

@@ -82,16 +82,9 @@ router.route('/posts/:post_id')
 
 router.route('/posts/:post_id/comment')
   .get((req, res)=>{
-    Promise.all([
-      User.fetchAll(),
-      Post.where('id', req.params.post_id).fetch()
-    ]).then(results=>{
-      var commentVars = {
-        users :results[0].toJSON(),
-        post: results[1].toJSON()
-      }
-
-      res.json(commentVars);
-    })
+    Post.addComment(req.params.post_id,User).then(results =>{
+      res.json(results);
+    });
   })
+
 module.exports = router;

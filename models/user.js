@@ -13,4 +13,13 @@ var User = bookshelf.Model.extend({
   }
 });
 
+User.getAllUsers = function(){
+  return new Promise( (resolve, reject) => {
+    User.fetchAll().then(results => {
+      resolve(results)
+    });
+  });
+}
+
+
 module.exports = bookshelf.model('User', User);

@@ -13,4 +13,20 @@ var Post = bookshelf.Model.extend({
   }
 });
 
+Post.addComment = function(post_id, userModel){
+  return new Promise((resolve, reject) =>{
+    Promise.all([
+      userModel.fetchAll(),
+      this.where('id', post_id).fetch()
+    ]).then(results=>{
+      var commentVars = {
+        users :results[0].toJSON(),
+        post: results[1].toJSON()
+      }
+
+      resolve(commentVars);
+    })
+  })
+}
+
 module.exports = bookshelf.model('Post', Post);
