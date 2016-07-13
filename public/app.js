@@ -1,4 +1,4 @@
-var app = angular.module('miniReddit', ['ngRoute']);
+var app = angular.module('miniReddit', ['ngRoute','ngAnimate']);
 
 app.controller('IndexController', function(){
   this.greeting = "What's up.";
