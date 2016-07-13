@@ -33,6 +33,15 @@ router.route('/users/:id')
       });
   });
 
+router.route('/users/:id/posts')
+  .get((req, res)=>{
+    User.where('id', req.params.id)
+      .fetch({withRelated:['post']})
+      .then(results => {
+        res.json(results.toJSON());
+      })
+  })
+
 router.route('/posts')
   .get((req, res) => {
     Post.fetchAll({withRelated:['user']}).then(results => {
@@ -62,10 +71,27 @@ router.route('/posts/:post_id')
   })
   .post((req, res)=>{
     new Comment({
-      // Do things
+      user_id:req.body.user_id,
+      post_id:req.body.post_id,
+      body:req.body.body
     }).save()
       .then(results=>{
-        res.redirect('/posts');
+        res.redirect(`/posts/${req.params.post_id}`)
       })
   });
+
+router.route('/posts/:post_id/comment')
+  .get((req, res)=>{
+    Promise.all([
+      User.fetchAll(),
+      Post.where('id', req.params.post_id).fetch()
+    ]).then(results=>{
+      var commentVars = {
+        users :results[0].toJSON(),
+        post: results[1].toJSON()
+      }
+
+      res.json(commentVars);
+    })
+  })
 module.exports = router;

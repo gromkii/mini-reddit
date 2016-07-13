@@ -16,4 +16,9 @@ router.route('/:id')
     res.render('index');
   });
 
+router.route("*")
+  .get((req,res)=>{
+    res.render('index');
+  })
+
 module.exports = router;

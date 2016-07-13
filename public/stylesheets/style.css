@@ -1,3 +1,9 @@
+.flex-it{
+  display:flex;
+  flex-direction: column;
+  align-content: center;
+}
+
 .center {
   margin:0 auto;
 }

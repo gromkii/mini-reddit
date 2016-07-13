@@ -30,6 +30,12 @@ app.config(function($locationProvider, $routeProvider){
     controllerAs: 'show'
   })
 
+  .when('/users/:id/posts',{
+    templateUrl:'/views/users/posts.html',
+    controller:'UserPostController',
+    controllerAs:'userPosts'
+  })
+
   .when('/posts',{
     templateUrl:'/views/posts/index.html',
     controller:'PostsController',
@@ -84,6 +90,17 @@ app.controller("ShowUserController", ['$http','$routeParams', function($http, $r
 
 }]);
 
+app.controller("UserPostController", ['$http','$routeParams', function($http, $routeParams){
+  var store = this;
+
+  $http({
+    method:'GET',
+    url:`/api/users/${$routeParams.id}/posts`
+  }).then(results => {
+    store.data = results.data;
+  })
+}]);
+
 app.controller("NewUserController", function(){
   //Do I even really need this?
 });
@@ -121,5 +138,11 @@ app.controller("ShowPostController", ['$http','$routeParams', function($http, $r
 }])
 
 app.controller("NewCommentController", ['$http','$routeParams', function($http,$routeParams){
-  var store = this
+  var store = this;
+  $http({
+    method:'GET',
+    url:`/api/posts/${$routeParams.post_id}/comment`
+  }).then(results=>{
+    store.data = results.data;
+  })
 }])

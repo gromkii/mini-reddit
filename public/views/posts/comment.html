@@ -1,2 +1,26 @@
-<form>
-  <
+<div class="col-md-8 col-md-offset-2">
+  <h2>Comment on "<strong>{{newComment.data.post.title}}</strong>"</h2>
+
+  <form action="{{ '/api/posts/' + newComment.data.post.id}}" method="POST">
+
+    <fieldset class="form-group">
+      <label for="body">Comment</label>
+      <textarea name="body" class="form-control"></textarea>
+
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label for="user_id">Post As:</label>
+      <select name='user_id'>
+        <option ng-repeat="user in newComment.data.users" ng-value="user.id">{{ user.username }}</option>
+      </select>
+    </fieldset>
+
+    <input type="hidden" name="post_id" value="{{newComment.data.post.id}}">
+
+    <button type="submit" class="btn btn-primary">Add Comment</button>
+
+  </form>
+
+<a ng-href="/posts/{{newComment.data.post.id}}" class="btn btn-warning">Return to Post</a>
+</div>

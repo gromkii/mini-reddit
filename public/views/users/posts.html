@@ -1,0 +1,10 @@
+<div ng-repeat="post in userPosts.data.post" class="col-md-8 col-md-offset-2">
+  <h3>{{ post.title }}</h3>
+  <blockquote>"{{ post.body }}"</blockquote>
+  <small>
+    {{ post.created_at | date:'fullDate' }}
+    <a class="btn btn-primary btn-sm pull-right" ng-href="/posts/{{ post.id}}">Go to Post</a>
+    <a class="btn btn-warning btn-sm pull-right" ng-href="/users/{{ userPosts.data.id}}">Go Back</a>
+  </small>
+
+</div>
