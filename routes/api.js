@@ -37,9 +37,35 @@ router.route('/posts')
   .get((req, res) => {
     Post.fetchAll({withRelated:['user']}).then(results => {
       var posts = results.toJSON();
-      console.log(posts);
       res.json(posts);
     })
   })
+  .post((req, res) => {
+    new Post({
+      user_id:req.body.user_id,
+      title:req.body.title,
+      body:req.body.body
+    }).save()
+    .then(results=>{
+      res.redirect('/posts');
+    })
+  })
 
+router.route('/posts/:post_id')
+  .get((req, res) => {
+    Post.where('id', req.params.post_id)
+      .fetch({withRelated:['user','comment']})
+      .then(results => {
+        var post = results.toJSON();
+        res.json(post);
+      })
+  })
+  .post((req, res)=>{
+    new Comment({
+      // Do things
+    }).save()
+      .then(results=>{
+        res.redirect('/posts');
+      })
+  });
 module.exports = router;

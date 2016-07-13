@@ -24,18 +24,35 @@ app.config(function($locationProvider, $routeProvider){
     controllerAs:'newUser'
   })
 
+  .when('/users/:id',{
+    templateUrl:'/views/users/show.html',
+    controller: 'ShowUserController',
+    controllerAs: 'show'
+  })
+
+  .when('/posts',{
+    templateUrl:'/views/posts/index.html',
+    controller:'PostsController',
+    controllerAs:'posts'
+  })
+
   .when('/posts/new',{
     templateUrl:'/views/posts/new.html',
     controller:'NewPostController',
     controllerAs:'newPost'
   })
 
-  .when('/users/:id',{
-    templateUrl:'/views/users/show.html',
-    controller: 'ShowController',
-    controllerAs: 'show'
-  });
+  .when('/posts/:post_id',{
+    templateUrl:'/views/posts/show.html',
+    controller:'ShowPostController',
+    controllerAs: 'showPost'
+  })
 
+  .when('/posts/:post_id/comment',{
+    templateUrl:'/views/posts/comment.html',
+    controller:'NewCommentController',
+    controllerAs:'newComment'
+  });
 
   $locationProvider.html5Mode({
     enabled: true,
@@ -54,7 +71,7 @@ app.controller('UsersController', ['$http', function($http){
   });
 }]);
 
-app.controller("ShowController", ['$http','$routeParams', function($http, $routeParams){
+app.controller("ShowUserController", ['$http','$routeParams', function($http, $routeParams){
   var store = this;
 
   $http({
@@ -62,16 +79,25 @@ app.controller("ShowController", ['$http','$routeParams', function($http, $route
     url:'/api/users/' + $routeParams.id
   }).then( results => {
     console.log(results);
-    this.user = results.data;
+    store.user = results.data;
   })
 
 }]);
 
 app.controller("NewUserController", function(){
-  this.logger = function(){
-    console.log('Hello');
-  }
+  //Do I even really need this?
 });
+
+app.controller("PostsController", ['$http', function($http){
+  var store = this;
+
+  $http({
+    method:'GET',
+    url:'/api/posts'
+  }).then(results => {
+    store.postsList = results.data;
+  })
+}]);
 
 app.controller("NewPostController", ['$http','$scope', function($http,$scope){
   var store = this;
@@ -83,3 +109,17 @@ app.controller("NewPostController", ['$http','$scope', function($http,$scope){
     store.users = results.data;
   });
 }]);
+
+app.controller("ShowPostController", ['$http','$routeParams', function($http, $routeParams){
+  var store = this;
+  $http({
+    method:'GET',
+    url:`/api/posts/${$routeParams.post_id}`
+  }).then(results => {
+    store.post = results.data;
+  })
+}])
+
+app.controller("NewCommentController", ['$http','$routeParams', function($http,$routeParams){
+  var store = this
+}])

@@ -1,0 +1,19 @@
+<table class="table" ng-show="posts.postsList.length">
+  <thead>
+    <th>Post ID</th>
+    <th>User</th>
+    <th>Title</th>
+    <th>Post</th>
+  </thead>
+
+  <tbody ng-repeat="post in posts.postsList">
+    <tr>
+      <td>{{ post.id }}</td>
+      <td><a ng-href="/users/{{ post.user.id }}">{{ post.user.username }}</a></td>
+      <td><a ng-href="/posts/{{ post.id }}">{{ post.title }}</a></td>
+      <td>{{ post.body }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 ng-hide="posts.postsList.length">No posts to display...</h2>

@@ -1,0 +1,15 @@
+<section class="row">
+  <div class="col-md-3 col-md-offset-1">
+    <img ng-src="{{showPost.post.user.img_url}}" class="img-circle center">
+    <h3 class="text-center"><a ng-href="/users/{{ showPost.post.user.id }}">{{showPost.post.user.username}}</a></h3>
+    <small class="text-center">Joined: {{showPost.post.user.created_at | date:'fullDate'}}</small>
+  </div>
+
+  <div class="col-md-6 col-md-offset-1">
+    <h3>{{showPost.post.title}}</h3>
+    <blockquote>{{showPost.post.body}}</blockquote>
+
+    <a href="/posts" class="btn btn-primary pull-right">Return to Posts</a>
+    <a ng-href="/posts/{{ showPost.post.id }}/comment" class="btn btn-warning pull-right">New Comment</a>
+  </div>
+</section>

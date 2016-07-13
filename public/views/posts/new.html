@@ -1,16 +1,17 @@
 <div class="col-md-8 col-md-offset-2">
-  <form action="/api/posts" method="post">
+  <form action="/api/posts" method="POST">
     <fieldset class="form-group">
       <label for="title">Post Title</lable>
       <input type="text" class="form-control" name="title" ng-model="title">
     </fieldset>
     <fieldset class="form-group">
-      <label for="title">Post Title</lable>
-      <input class="form-control" type="text" name="title" ng-model="title">
+      <label for="title">Post</lable>
+      <textarea class="form-control" type="text" name="body" ng-model="body" rows="3"></textarea>
     </fieldset>
     <fieldset class="form-group">
-      <select>
-        <option ng-repeat="user in newPost.users">{{ user.username }}</option>
+      <label for="user_id">Post As:</label>
+      <select name='user_id'>
+        <option ng-repeat="user in newPost.users" ng-value="user.id">{{ user.username }}</option>
       </select>
     </fieldset>
 

@@ -2,8 +2,8 @@
   <div class="col-md-8 col-md-offset-2">
     <img ng-src="{{show.user.img_url}}" class="img-circle pull-right">
     <h2> {{ show.user.username }} </h2>
-    <h3> {{ show.user.full_name }} </h2>
-      <p> Joined: {{ show.user.created_at | date:'longDate'}} </p>
-      <a ng-href="/users/{{show.user.id}}/posts">View Posts</a>
+    <h3> {{ show.user.full_name }} </h3>
+    <p> Joined: {{ show.user.created_at | date:'longDate'}} </p>
+    <a ng-href="/users/{{show.user.id}}/posts">View Posts</a>
   </div>
 </div>
