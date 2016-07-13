@@ -2,8 +2,13 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
-    index = require('./routes/index'),
+    bookshelf = require('./db/bookshelf'),
+    index = require('./routes/index')
+    users = require('./routes/users'),
+    posts = require('./routes/posts'),
     api   = require('./routes/api');
+
+require('locus');
 
 // === Middleware === //
 app.use(bodyParser.json())
@@ -17,6 +22,8 @@ app.set('view engine', 'ejs')
 
 // === Routes === //
 app.use('/', index);
+app.use('/users',users);
+app.use('/posts',posts);
 app.use('/api', api);
 
 

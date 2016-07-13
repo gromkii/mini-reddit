@@ -1,0 +1,17 @@
+<div class="col-md-8 col-md-offset-2">
+  <form action="/api/users" method="post">
+    <fieldset class="form-group">
+      <label for="full_name">Full Name</label>
+      <input type="text" class="form-control" name="full_name" ng-model="full_name" ng-required="required">
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" name="username" ng-model="username" ng-required="required">
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="img_url">Image Url</label>
+      <input type="text" class="form-control" name="img_url" ng-model="img_url" ng-required="required">
+    </fieldset>
+    <button type="submit" class="btn btn-primary pull-right">Add New User</button>
+  </form>
+</div>

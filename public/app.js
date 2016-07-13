@@ -18,11 +18,24 @@ app.config(function($locationProvider, $routeProvider){
     controllerAs: 'users'
   })
 
+  .when('/users/new',{
+    templateUrl:'/views/users/new.html',
+    controller: 'NewUserController',
+    controllerAs:'newUser'
+  })
+
+  .when('/posts/new',{
+    templateUrl:'/views/posts/new.html',
+    controller:'NewPostController',
+    controllerAs:'newPost'
+  })
+
   .when('/users/:id',{
     templateUrl:'/views/users/show.html',
     controller: 'ShowController',
     controllerAs: 'show'
   });
+
 
   $locationProvider.html5Mode({
     enabled: true,
@@ -52,4 +65,21 @@ app.controller("ShowController", ['$http','$routeParams', function($http, $route
     this.user = results.data;
   })
 
+}]);
+
+app.controller("NewUserController", function(){
+  this.logger = function(){
+    console.log('Hello');
+  }
+});
+
+app.controller("NewPostController", ['$http','$scope', function($http,$scope){
+  var store = this;
+
+  $http({
+    method:'GET',
+    url:'/api/users'
+  }).then(results => {
+    store.users = results.data;
+  });
 }]);

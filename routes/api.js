@@ -10,7 +10,17 @@ router.route('/users')
     User.fetchAll().then((results) => {
       var users = results.toJSON();
       res.json(users);
-    })
+    });
+  })
+  .post((req, res) => {
+    new User({
+      full_name:req.body.full_name,
+      username:req.body.username,
+      img_url:req.body.img_url
+    }).save()
+      .then(results => {
+        res.redirect('/users');
+      })
   })
 
 router.route('/users/:id')
@@ -20,8 +30,16 @@ router.route('/users/:id')
       .then( results => {
         var user = results.toJSON();
         res.json(user);
-      })
-  })
+      });
+  });
 
+router.route('/posts')
+  .get((req, res) => {
+    Post.fetchAll({withRelated:['user']}).then(results => {
+      var posts = results.toJSON();
+      console.log(posts);
+      res.json(posts);
+    })
+  })
 
 module.exports = router;

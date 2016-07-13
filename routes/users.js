@@ -5,5 +5,15 @@ router.route('/')
   .get((req, res) => {
     res.render('index');
   });
-  
+
+router.route('/new')
+.get((req, res) => {
+  res.render('index');
+});
+
+router.route('/:id')
+  .get((req, res) => {
+    res.render('index');
+  });
+
 module.exports = router;

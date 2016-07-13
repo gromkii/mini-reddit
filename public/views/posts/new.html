@@ -1,0 +1,20 @@
+<div class="col-md-8 col-md-offset-2">
+  <form action="/api/posts" method="post">
+    <fieldset class="form-group">
+      <label for="title">Post Title</lable>
+      <input type="text" class="form-control" name="title" ng-model="title">
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="title">Post Title</lable>
+      <input class="form-control" type="text" name="title" ng-model="title">
+    </fieldset>
+    <fieldset class="form-group">
+      <select>
+        <option ng-repeat="user in newPost.users">{{ user.username }}</option>
+      </select>
+    </fieldset>
+
+    <button type="submit" class="btn btn-primary">Add Post</button>
+  </form>
+
+</div>
