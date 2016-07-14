@@ -10,7 +10,7 @@
     <th>Post</th>
   </thead>
 
-  <tbody ng-repeat="post in posts.postsList | filter:search">
+  <tbody ng-repeat="post in posts.postsList | filter:search track by $index">
     <tr>
       <td>{{ post.id }}</td>
       <td><a ng-href="/users/{{ post.user.id }}">{{ post.user.username }}</a></td>
